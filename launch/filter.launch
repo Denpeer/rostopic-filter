@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- The planning and execution components of MoveIt! configured to run -->
+    <!-- using the ROS-Industrial interface. -->
+    
+    <!-- | 		PARAMETERS  		| -->
+    <!-- The rate in Hz for the output topic -->
+    <arg name="ros_loop_rate" default="33" />
+    <!-- The output topic -->
+    <arg name="output_topic" default="/iiwa/state/CartesianPoseFiltered" />
+    <!-- The input topic -->
+    <arg name="input_topic" default="/iiwa/state/CartesianPose" />
+
+    <!-- Load filter -->
+        <param name="output_topic" value="$(arg output_topic)" />
+        <param name="ros_loop_rate" value="$(arg ros_loop_rate)" />
+        <param name="input_topic" value="$(arg input_topic)" />
+        <node name="filter" pkg="rostopic_filter" type="filter"
+            respawn="false" output="screen">
+        </node>
+    
+</launch>
