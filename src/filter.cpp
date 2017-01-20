@@ -42,13 +42,14 @@ int main(int argc, char **argv)
     ros::Subscriber sub_input = n.subscribe(input_topic, 1, inputCallback);
     ros::Publisher pub_output = n.advertise<geometry_msgs::PoseStamped>(output_topic, 1);
 
+    geometry_msgs::PoseStamped curPos;
 
     while (ros::ok())
     {
     
-
+    curPos = current_cartesian_position;
 	ros::spinOnce();
-    pub_output.publish(current_cartesian_position);
+    pub_output.publish(curPos);
 	loop_rate.sleep();
     }
 
